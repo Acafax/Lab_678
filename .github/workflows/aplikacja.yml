@@ -23,7 +23,7 @@ jobs:
 
     - name: Zainstaluj zależności
       shell: pwsh
-      run: ./Instalator.ps1 
+      run: ./Instalator.ps1
       
     - name: Odpalenie skryptu
       run: python Task.py
