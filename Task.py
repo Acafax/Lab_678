@@ -85,7 +85,9 @@ if os.path.exists(source_path) == True and os.path.exists(dest_path) == True:
         odczyt_json(source_path)
     elif source_ext == ".yaml":
         odczyt_yaml(source_path, dest_ext, dest_path)
-
+    elif source_ext == ".xml":
+        odczyt_xml(source_path, dest_ext, dest_path)
+        
 if os.path.exists(source_path) != True or os.path.exists(dest_path) != True:
     print("poszczególne pliki nie istnieją albo ścieżki nie są poprawne")
     input("Naciśnij enter aby zakończyć")
