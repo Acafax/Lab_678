@@ -1,0 +1,40 @@
+name: Tworzenie.exe
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "37 21 * * 0" # Uruchomienie raz w tygodniu 21:37 w niedzielę
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest #zmiana domyślnego serwera na Windowsa
+    
+    steps:
+    - name: Sprawdź repozytorium/ pobieranie aby mieć do niego dostęp 
+      uses: actions/checkout@v3
+
+    - name: Skonfiguruj Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.x" # Wybierz odpowiednią wersję Pythona
+
+    - name: Zainstaluj zależności
+      shell: pwsh
+      run: |
+        ./Instalator.ps1 
+      
+
+    - name: Budowanie aplikacji exe
+      run: |
+        pyinstaller Task.py
+        echo "EXE_PATH=$(pwd)/Task/dist/Task.exe" >> $GITHUB_ENV
+        # Dodaj tutaj komendy budujące plik .exe
+
+    - name: przenoszenie aplikacji exe na repozytorium
+      uses: actions/upload-artifact@v3
+      with:
+        name: Task.exe
+        path: ${{ env.EXE_PATH }}
