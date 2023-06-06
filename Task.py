@@ -12,6 +12,8 @@ dest_path = sys.argv[2] #ściezka docelowa
 source_ext = os.path.splitext(source_path)[1] # czy źródłowa to json, yaml, xml 
 dest_ext = os.path.splitext(dest_path)[1] # czy docelowa to json, yaml, xml
 
+# =================================BLOK JSON
+
 def odczyt_json(source_path):
     try:
         with open(source_path, 'r') as file:
@@ -39,11 +41,27 @@ def json_zamiana(tekst, dest_ext, dest_path):
     else:
         print("Coś poszło nie tak")
 
+        
+# ======================== BLOK YAML
 
+def odczyt_yaml(source_path, dest_ext, dest_path):
+    try:
+        with open(source_path, 'r') as file:
+            tekst = file.read()
+            # zamienia zawartość pliku yaml na coś bardzije zjadliwego
+            zmienna_yaml = yaml.safe_load(tekst)
+            #yaml_zamiana(zmienna_yaml, dest_ext, dest_path,) funkcja zostanie dodana w kolejnym Tasku
+    except FileNotFoundError:
+        print(f"Nie znaleziono ścieżki do pliku {source_path}")
+
+
+# ===================================== sprawda czy ściezki są prawdziwe
 
 if os.path.exists(source_path) == True and os.path.exists(dest_path) == True:
     if source_ext == ".json":
         odczyt_json(source_path)
+    elif source_ext == ".yaml":
+        odczyt_yaml(source_path, dest_ext, dest_path)
 
 if os.path.exists(source_path) != True or os.path.exists(dest_path) != True:
     print("poszczególne pliki nie istnieją albo ścieżki nie są poprawne")
