@@ -3,7 +3,7 @@ name: Tworzenie.exe
 on:
   push:
     branches:
-      - master
+      - mian
   schedule:
     - cron: "37 21 * * 0" # Uruchomienie raz w tygodniu 21:37 w niedzielę
   workflow_dispatch:
@@ -19,12 +19,11 @@ jobs:
     - name: Skonfiguruj Python
       uses: actions/setup-python@v3
       with:
-        python-version: "3.x" # Wybierz odpowiednią wersję Pythona
+        python-version: "3.9.5" # Wybierz odpowiednią wersję Pythona
 
     - name: Zainstaluj zależności
       shell: pwsh
-      run: |
-        ./Instalator.ps1 
+      run: ./Instalator.ps1 
       
 
     - name: Budowanie aplikacji exe
