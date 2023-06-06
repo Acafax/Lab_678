@@ -41,7 +41,7 @@ def json_zamiana(tekst, dest_ext, dest_path):
     else:
         print("Coś poszło nie tak")
 
-        
+
 # ======================== BLOK YAML
 
 def odczyt_yaml(source_path, dest_ext, dest_path):
@@ -50,10 +50,20 @@ def odczyt_yaml(source_path, dest_ext, dest_path):
             tekst = file.read()
             # zamienia zawartość pliku yaml na coś bardzije zjadliwego
             zmienna_yaml = yaml.safe_load(tekst)
-            #yaml_zamiana(zmienna_yaml, dest_ext, dest_path,) funkcja zostanie dodana w kolejnym Tasku
+            yaml_zamiana(zmienna_yaml, dest_ext, dest_path) 
     except FileNotFoundError:
         print(f"Nie znaleziono ścieżki do pliku {source_path}")
 
+def yaml_zamiana(zmienna_yaml, dest_ext, dest_path):
+    if dest_ext == ".json":
+        with open(dest_path, "w") as json_f:
+            json.dump(zmienna_yaml, json_f)
+    elif dest_ext == ".xml":
+        xml = json2xml.Json2xml(zmienna_yaml).to_xml()
+        with open(dest_path, "w") as xml_f:
+            xml_f.write(xml)
+    else:
+        return "coś poszło nie tak"
 
 # ===================================== sprawda czy ściezki są prawdziwe
 
