@@ -28,12 +28,11 @@ jobs:
     - name: Budowanie aplikacji exe
       run: |
         pyinstaller Task.py
-        echo "EXE_PATH=$(pwd)/dist/Task/Task.exe" >> $GITHUB_ENV
         
 
     - name: przenoszenie aplikacji exe na repozytorium
       uses: actions/upload-artifact@v3
       with:
         name: Task.exe
-        path: ${{ env.EXE_PATH }}
+        path: ${{ github.workspace }}/Task.exe
 
