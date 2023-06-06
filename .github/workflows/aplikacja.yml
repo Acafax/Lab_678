@@ -36,4 +36,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: Task.exe
-        path: ${{ env.EXE_PATH }}
+        path: ${{ github.workspace }}/converter.exe
