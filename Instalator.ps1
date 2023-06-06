@@ -1,4 +1,4 @@
-$packages = @("pyyam1","pyinstaller","json2xml","xmltodict","customtkinter")
+$packages = @("pyyaml","pyinstaller","json2xml","xmltodict","customtkinter")
 foreach ($package in $packages) {
     Write-Host "pobieram bibliotekę $package"
     pip install $package
