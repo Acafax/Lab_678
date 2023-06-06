@@ -25,11 +25,15 @@ jobs:
       shell: pwsh
       run: ./Instalator.ps1
       
-    - name: Odpalenie skryptu
-      run: python Task.py
-      
-    - name: Przesyłanie utworzonego pliku
+    - name: Budowanie aplikacji exe
+      run: |
+        pyinstaller Task.py
+        echo "EXE_PATH=$(pwd)/dist/Task/Task.exe" >> $GITHUB_ENV
+        
+
+    - name: przenoszenie aplikacji exe na repozytorium
       uses: actions/upload-artifact@v3
       with:
-        name: Converter.exe
-        path: ${{ github.workspace }}/Task.exe
+        name: Task.exe
+        path: ${{ env.EXE_PATH }}
+
