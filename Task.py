@@ -64,6 +64,19 @@ def yaml_zamiana(zmienna_yaml, dest_ext, dest_path):
             xml_f.write(xml)
     else:
         return "coś poszło nie tak"
+    
+
+# ==========================BLOK XML
+
+def odczyt_xml(source_path, dest_ext, dest_path):
+    try:
+        with open(source_path, "r") as file:
+            zmienna_xml = xmltodict.parse(file.read())
+            #xml_zamiana(zmienna_xml, dest_ext, dest_path)
+    except FileNotFoundError:
+        print(f"Nie znaleziono ścieżki do pliku {source_path}")
+
+
 
 # ===================================== sprawda czy ściezki są prawdziwe
 
