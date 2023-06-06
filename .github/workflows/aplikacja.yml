@@ -30,7 +30,7 @@ jobs:
     - name: Budowanie aplikacji exe
       run: |
         pyinstaller Task.py
-        echo "EXE_PATH=$(pwd)/Task/dist/Task.exe" >> $GITHUB_ENV
+        echo "EXE_PATH=$(pwd)/Task/dist/Task/Task.exe" >> $GITHUB_ENV
         # Dodaj tutaj komendy budujące plik .exe
 
     - name: przenoszenie aplikacji exe na repozytorium
